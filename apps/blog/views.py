@@ -1,4 +1,6 @@
 from django.shortcuts import render
+# import ugettext_lazy for location
+from django.utils.translation import ugettext_lazy as _
 
 from base_views import Index, Detail, List
 
@@ -8,6 +10,7 @@ def home(request):
     View for index page.
     """
     context = (Index()).get_context()
+    context["message"] = _("Recent Articles")
     return render(request, 'index.html', context)
 
 
@@ -21,13 +24,13 @@ def detail(request, id):
 
 def category_articles(request, category_name):
     context = (List()).get_context(CATEGORY=category_name)
-    context["message"] = "There are %d articles in the category %s" %\
+    context["message"] = _("There are %r articles in the category %s") %\
         (len(context["articles_list"]), category_name)
     return render(request, 'index.html', context)
 
 
 def tag_articles(request, tag_name):
     context = (List()).get_context(TAG=tag_name)
-    context["message"] = "There are %d articles in the tag %s" %\
+    context["message"] = _("There are %r articles in the tag %s") %\
         (len(context["articles_list"]), tag_name)
     return render(request, 'index.html', context)

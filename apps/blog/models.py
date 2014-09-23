@@ -117,8 +117,7 @@ class Article(models.Model):
         verbose_name=_(u'Summary'),
         validators=[MinLengthValidator(30)],
         error_messages={"min_length":
-                        _("At least %(limit_value)d word,please!\
-                            (it has %(show_value)d).")
+                        _("At least %(limit_value)d word,please!(it has %(show_value)d).")
                         }
     )
     content = wmd_models.MarkDownField(verbose_name=_(u'Content'))
@@ -194,7 +193,7 @@ class Article(models.Model):
         """
         all_tags_list = []
         # obj_list = cls.objects.filter(status=0).order_by('-update_time')
-        obj_list = Article.get_articles(NUM=1000)
+        obj_list = Article.objects.all()
         for obj in obj_list:
             all_tags_list = all_tags_list + obj.tags_list()
             # for tag in obj.tags.split(','):
