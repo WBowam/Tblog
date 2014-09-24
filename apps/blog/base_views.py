@@ -82,7 +82,10 @@ class Detail(object):
 
     def get_context(self, id):
         base_context = (Base()).get_base_context(NUM=10)
-        base_context["detail"] = Article.objects.get(id=id)
+        article = Article.objects.get(id=id)
+        article.view_times += 1
+        article.save()
+        base_context["detail"] = article
         base_context["related_articles"] = (Article.objects.get(id=id)).\
             related_articles(10)
         context = base_context

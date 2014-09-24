@@ -131,6 +131,10 @@ class Article(models.Model):
     status = models.IntegerField(
         default=0, choices=STATUS.items(), verbose_name=_(u'Status'))
     view_times = models.IntegerField(default=1)
+    like_times = models.IntegerField(default=1)
+
+    liked_ip = models.TextField(verbose_name=_(u'liked_ip'))
+    disliked_ip = models.TextField(verbose_name=_(u'disliked_ip'))
 
     is_top = models.BooleanField(default=False, verbose_name=_(u'Top'))
 

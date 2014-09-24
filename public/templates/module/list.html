@@ -6,7 +6,17 @@
 <ul>
 	{% for item in articles_list %}
 						<li>
-							<span><a href="#" class="icon-thumbs-up"></a><a href="#" class=" icon-thumbs-down"></a></span>
+							<span>{% if ip in item.liked_ip %}
+	<l class="liked">Liked</l><a class="icon-ok"></a>
+	{% else %}
+	<a href="/blog/like/{{item.id}}/" class="icon-thumbs-up"></a>
+	{% endif %}
+	<k>{{ item.like_times }}</k>
+	{% if ip in item.disliked_ip %}
+	<l class="liked">Disliked</l><a class="icon-circle"></a>
+	{% else %}
+	<a href="/blog/dislike/{{item.id}}/" class="icon-thumbs-down"></a>
+	{% endif %}</span>
 							<div class="list-title"><a href="/blog/detail/{{item.id}}/">{{ item.title | slice:"15" }}</a></div>
 
 							<a href="/blog/detail/{{item.id}}/"><img class="thumbnail" src="/media/{{ item.title_image }}"></a>
