@@ -1,4 +1,5 @@
 {% load markdown_deux_tags %}
+{% load comments %}
 {% load i18n %}
 <span id="ho">
 	{% if ip in detail.liked_ip %}
@@ -28,17 +29,30 @@
 	<a href="/blog/detail/{{item.id}}/">{{ item.title }}</a>
 	{% endfor %}
 </div>
-<!-- Duoshuo Comment BEGIN -->
-<div class="ds-thread"></div>
-<script type="text/javascript">
-var duoshuoQuery = {short_name:"ymj"};
-(function() {
-var ds = document.createElement('script');
-ds.type = 'text/javascript';ds.async = true;
-ds.src = 'http://static.duoshuo.com/embed.js';
-ds.charset = 'UTF-8';
-(document.getElementsByTagName('head')[0] 
-|| document.getElementsByTagName('body')[0]).appendChild(ds);
-})();
-</script>
-<!-- Duoshuo Comment END -->
+
+{% get_comment_count for detail as comment_count %}
+<p>{{ comment_count }} comments have been posted.</p>
+{% render_comment_list for detail %}
+{% get_comment_list for detail as comment_list %}
+<ul>
+{% for comment in comment_list %}
+<li>{% trans "Posted by:" %} {{ comment.user_name }} {% trans "on" %} {{ comment.submit_date }}
+<BR>
+{% trans "Comment:" %} {{ comment.comment }}
+</li>
+{% endfor %}
+</ul>
+
+{% get_comment_form for detail as form %}
+<table>
+  <form action="{% comment_form_target %}" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <tr>
+      <td colspan="2">
+        <input type="submit" name="submit" value="Post">
+        <input type="submit" name="preview" value="Preview">
+      </td>
+    </tr>
+  </form>
+</table>

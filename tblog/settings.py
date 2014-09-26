@@ -42,6 +42,11 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # In previous versions, the sites framework was enabled by default.
+    'django.contrib.sites',
+    # for comments
+    'django.contrib.comments',
+    # for pagination
     'pagination',
     # django-wmd-editor,markdown editor(used in admin)
     'wmd',
@@ -176,3 +181,7 @@ TEMPLATE_DIRS = (
 # End
 # For django-wmd-editor,the markdown editor
 WMD_ADMIN_SHOW_PREVIEW = True
+
+
+# For sites
+SITE_ID = 1
