@@ -1,38 +1,35 @@
-# Tblog
-效果预览：[tulpar.ngrok.com](http://tulpar.ngrok.com/blog/index)   
-测试帐号tulpar，密码qwe  
-## 目前状态：
-后台功能功能基本已完成，检查一下代码有没有不规    
-前台什么都没写，很丑陋的状态，有些链接还无效，没有接。。。。   
+### 介绍
+Tblog是个人博客系统。
 
-评论功能暂时使用多说，后期可能自己写
+### 基本功能
+* 发布博文，查看博文
+* 评论和点赞
+* 反垃圾系统
 
-
-## 用户模块
-用django自带的
-
-## blog
-* 文章(标签)
-  Article(tag)
-* 分类
-  Category
-
-## 评论
-用多说
-
-## 副文本
-djangoUeditor
-
-## admin
-之前用过几次Xadmin，已经比较熟悉Xadmin了，而且Xadmin不兼容djangoUediter。   
-github上偶遇DjnagoSuit，之前也有伙伴推荐过，看着很好，想试用一下。    
-
+### 集成的开源代码
+* DjnagoSuit
+* django-imagekit
+* duoshuo
+* pagination
+* django-wmd-editor
 
 ## 前台
-jquery mobile
+纯属手写，很难看吧～～
+
+## 分页
+用了django-pagination
+
+## 评论
+使用多说（之后改成Django自带的，不过效果很差，得找个时间定制）
+
+
+## markdonw编辑器
+使用了`django-wmd-editor`
+
+## markdown渲染器
+`markdown_deux`
 
 
 ### 图片处理
 本来是想用django-stdimage的，因为它是个神器，详见[Xadmin中形成缩略图](http://tulpar008.github.io/xadmin-list_displayzhong-xian-shi-suo-lue-tu.html)    
 ##### 后来偶遇看到一个神器django-imagekit，决定用它，原因很简单，没用过。
-
